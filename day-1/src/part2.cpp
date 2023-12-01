@@ -12,7 +12,7 @@ int calibrate(std::string input) {
 
     // Loop over lines
     for (std::string line; std::getline(ss, line, '\n');) {
-
+        // replace each word with its corresponding number
         for (int i=0; i<sizeof(word_numbers)/sizeof(std::string); i++) {
             char num = i+'1';
             std::regex reg(word_numbers[i]);
