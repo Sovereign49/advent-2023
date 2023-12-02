@@ -16,7 +16,7 @@ const std::string word_numbers[9] = {
     "nine",
 };
 
-int calibrate(std::string input) {
+int solution(std::string input) {
     std::stringstream ss(input);
     std::vector<int> nums;
     int answer = 0;
@@ -74,17 +74,14 @@ int main() {
                                    "4nineeightseven2\n"
                                    "zoneight234\n"
                                    "7pqrstsixteen\n";
-    const std::string test2 = "eighthreeight";
-    ;// file input
+    // file input
     std::ifstream f("input/part2.txt");
     std::stringstream buffer;
     buffer << f.rdbuf();
     const std::string real_input = buffer.str();
-    int test_output = calibrate(test_input);
+    int test_output = solution(test_input);
     std::cout << "Test Output: " << test_output << std::endl;
-    int actual_output = calibrate(real_input);
+    int actual_output = solution(real_input);
     std::cout << "Actual Output: " << actual_output << std::endl;
-    int test2_output = calibrate(test2);
-    std::cout << "Test Output: " << test2_output << std::endl;
     return 0;
 }

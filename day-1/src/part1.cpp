@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 
-int calibrate(std::string input) {
+int solution(std::string input) {
     std::stringstream ss(input);
     std::vector<int> nums;
     int answer = 0;
@@ -46,8 +46,8 @@ int main() {
     buffer << f.rdbuf();
     const std::string real_input = buffer.str();
 
-    int test_output = calibrate(test_input);
-    int actual_output = calibrate(real_input);
+    int test_output = solution(test_input);
+    int actual_output = solution(real_input);
     std::cout << "Test Output: " << test_output << std::endl;
     std::cout << "Actual Output: " << actual_output << std::endl;
     return 0;
