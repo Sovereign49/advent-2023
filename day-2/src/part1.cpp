@@ -16,58 +16,49 @@ Color toColor(std::string input) {
     else return red;
 }
 
+std::vector<std::string> split (const std::string &s, char delim) {
+    std::vector<std::string> result;
+    std::stringstream ss (s);
+    std::string item;
+
+    while (getline (ss, item, delim)) {
+        std::stringstream is(item);
+        std::string split_item;
+        while (getline(is, split_item, '\n')) {
+            result.push_back(split_item);
+        }
+    }
+
+    return result;
+}
+
 int solution(std::string input) {
-    std::stringstream input_stream(input);
-    std::string split;
-    int id = 0;
     int answer = 0;
+    std::vector<std::string> game_outcomes;
     std::vector<int> possible_games;
 
-    while (std::getline(input_stream,split,':')) {
-        if (split.substr(0,4) == "Game") {
-            id = split[split.size()-1] - '0';
-            std::cout << split << std::endl;
+    std::vector<std::string> split_input = split(input, ':');
+
+    for (int i=0; i<split_input.size(); i++) {
+        std::cout << i << ": " << split_input[i] << std::endl;
+    }
+    for (int i=0; i<split_input.size(); i++) {
+        if (i%2==0) {
+            // get id as index of game_outcomes + 1;
+            continue;
         }
         else {
-            std::stringstream game_stream(split);
-            std::string game_split;
-            bool is_possible = true;
-            while (std::getline(game_stream, game_split, ';')) {
-                std::stringstream color_stream(game_split);
-                std::string color_split;
-                while (std::getline(color_stream, color_split, ',')) {
-                    color_split = color_split.substr(1);
-                    std::stringstream number_stream(color_split);
-                    std::string number_split;
-                    int number = 0;
-                    while (std::getline(number_stream, number_split, ' ')) {
-                        if (isdigit(number_split[1])) {
-                            number = std::stoi(number_split);
-                        }
-                        else {
-                            Color color = toColor(number_split);
-                            switch (color) {
-                            case red:
-                                is_possible = (number <= 12);
-                            case green:
-                                is_possible = (number <= 13);
-                            case blue:
-                                is_possible = (number <= 14);
-                            }
-                        }
-                        std::cout << number_split << std::endl;
-                    }
-                }
-            }
-            if (is_possible) {
-                possible_games.push_back(id);
-            }
+            game_outcomes.push_back(split_input[i]);
         }
     }
-    for (int i=0; i<possible_games.size(); i++) {
-        answer = answer + possible_games[i];
-        std::cout << possible_games[i] << std::endl;
+    for (int i=0; i<game_outcomes.size(); i++) {
+        std::cout << i << ": " << game_outcomes[i] << std::endl;
+        std::vector<std::string> hands = split(game_outcomes[i], ';');
+        for (int i=0; i<hands.size(); i++) {
+            std::vector<std::string> colors = split(hands[i], ';');
+        }
     }
+
     return answer;
 }
 int main() {
