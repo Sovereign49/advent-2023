@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iterator>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -24,7 +23,6 @@ int calibrate(std::string input) {
     // Loop over lines
     for (std::string line; std::getline(ss, line, '\n');) {
         std::cout << line << std::endl;
-        // Create vector to store digits to then convert back
         int leftnum = 0;
         int rightnum = 0;
 
@@ -41,6 +39,7 @@ int calibrate(std::string input) {
                 }
             }
             else {
+                // Check if substring is a number
                 for (int j=0; j<9; j++) {
                     std::string num_word = word_numbers[j];
                     if (num_word.size() > line.length()-i)
@@ -51,15 +50,13 @@ int calibrate(std::string input) {
                         if(!leftnum) {
                             leftnum = j+1;
                         }
-                        else {
-                            rightnum = j+1;
-                        }
+                        rightnum = j+1;
                         break;
                     }
                 }
             }
         }
-        // Create 2 digit number with first and last digit in the array then push it to the nums vector
+        // Create 2 digit number with first and last number then push it to the nums vector
         int num = leftnum*10+rightnum;
         std::cout << num << std::endl;
         nums.push_back(num);
@@ -78,6 +75,7 @@ int main() {
                                    "4nineeightseven2\n"
                                    "zoneight234\n"
                                    "7pqrstsixteen\n";
+    const std::string test2 = "eightow";
     const std::string real_input = {
 #include "part2.txt"
     };
@@ -85,5 +83,7 @@ int main() {
     std::cout << "Test Output: " << test_output << std::endl;
     int actual_output = calibrate(real_input);
     std::cout << "Actual Output: " << actual_output << std::endl;
+    int test2_output = calibrate(test2);
+    std::cout << "Test Output: " << test2_output << std::endl;
     return 0;
 }
