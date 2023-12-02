@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include <vector>
 
 const std::string word_numbers[9] = {
@@ -74,9 +75,11 @@ int main() {
                                    "zoneight234\n"
                                    "7pqrstsixteen\n";
     const std::string test2 = "eighthreeight";
-    const std::string real_input = {
-#include "part2.txt"
-    };
+    ;// file input
+    std::ifstream f("input/part2.txt");
+    std::stringstream buffer;
+    buffer << f.rdbuf();
+    const std::string real_input = buffer.str();
     int test_output = calibrate(test_input);
     std::cout << "Test Output: " << test_output << std::endl;
     int actual_output = calibrate(real_input);

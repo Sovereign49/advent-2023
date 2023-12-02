@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include <vector>
 
 int calibrate(std::string input) {
@@ -38,9 +39,13 @@ int main() {
                                    "pqr3stu8vwx\n"
                                    "a1b2c3d4e5f\n"
                                    "treb7uchet\n";
-    const std::string real_input = {
-#include "part1.txt"
-    };
+
+    // file input
+    std::ifstream f("input/part1.txt");
+    std::stringstream buffer;
+    buffer << f.rdbuf();
+    const std::string real_input = buffer.str();
+
     int test_output = calibrate(test_input);
     int actual_output = calibrate(real_input);
     std::cout << "Test Output: " << test_output << std::endl;
