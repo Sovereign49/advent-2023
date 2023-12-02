@@ -8,4 +8,4 @@ Code is written so that it functions on x86_64 Linux, if it doesn't compile on y
 
 To run the code on a standard Linux machine compile both parts by running build.sh and then use the run script by running the command `sh run.sh <part number>`
 
-Look at the `day-test` folder for an idea of how the file-structure is laid out.
+Look at the `day-template` folder for an idea of how the file-structure is laid out.
